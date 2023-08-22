@@ -4,7 +4,12 @@ import Couters from "./components/Couters";
 import Navbar from "./components/Navbar";
 
 import Movie from "./components/Movie";
-import Todo from "./pages/Todo";
+import { Route, Routes, redirect } from "react-router-dom";
+import Product from "./components/Product";
+import ProductDetail from "./components/ProductDetail";
+import Dashboard from "./components/admin/Dashboard";
+import Post from "./components/admin/Post";
+import Update from "./components/admin/Update";
 function App() {
   const [counters, setCounters] = useState([
     { id: 1, value: 4 },
@@ -44,16 +49,30 @@ function App() {
   return (
     <React.Fragment>
       <Navbar totalCounter={counters.filter((c) => c.value !== 0).length} />
-      <main className="container">
-        {/* <Couters
-          counters={counters}
-          onDelete={handleDelete}
-          onIncrement={handleIncrement}
-          onDecrement={handleDecrement}
-          onReset={handleReset}
-        /> */}
-        <Movie />
-      </main>
+
+      <div className="container">
+        <Routes>
+          <Route
+            path="counters"
+            element={
+              <Couters
+                counters={counters}
+                onDelete={handleDelete}
+                onIncrement={handleIncrement}
+                onDecrement={handleDecrement}
+                onReset={handleReset}
+              />
+            }
+          />
+          <Route path="movies" element={<Movie />} />
+          <Route path="product" element={<Product />} />
+          <Route path="product/:id?" element={<ProductDetail />} />
+          <Route path="/admin" Component={Dashboard}>
+            <Route path="posts" Component={Post} />
+            <Route path="admin/update" Component={Update} />
+          </Route>
+        </Routes>
+      </div>
     </React.Fragment>
   );
 }

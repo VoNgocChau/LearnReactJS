@@ -1,13 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = (props) => {
     return (
         <div>
-            <nav className="navbar bg-body-tertiary">
-                <div className="container">
-                    <a className="navbar-brand" href="@">Navbar</a>
-                    <span className="badge badge-fill bg-secondary">{props.totalCounter}</span>
+            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+                <div className="collapse navbar-collapse">
+                    <div className="navbar-nav">
+                        <Link className='nav-item nav-link' to="movies">Movie</Link>
+                        <Link className='nav-item nav-link' to="customers">Customer</Link>
+                        <Link className='nav-item nav-link' to="rentals">Rental</Link>
+                    </div>
                 </div>
+
             </nav>
         </div>
     )
