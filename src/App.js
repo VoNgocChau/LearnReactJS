@@ -4,12 +4,15 @@ import Couters from "./components/Couters";
 import Navbar from "./components/Navbar";
 
 import Movie from "./components/Movie";
-import { Route, Routes, redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Product from "./components/Product";
 import ProductDetail from "./components/ProductDetail";
 import Dashboard from "./components/admin/Dashboard";
 import Post from "./components/admin/Post";
 import Update from "./components/admin/Update";
+import NotFound from "./components/NotFound";
+import { MovieForm } from "./components/MovieForm";
+import LoginForm from "./components/LoginForm";
 function App() {
   const [counters, setCounters] = useState([
     { id: 1, value: 4 },
@@ -65,12 +68,15 @@ function App() {
             }
           />
           <Route path="movies" element={<Movie />} />
+          <Route path="login" element={<LoginForm />} />
           <Route path="product" element={<Product />} />
           <Route path="product/:id?" element={<ProductDetail />} />
           <Route path="/admin" Component={Dashboard}>
             <Route path="posts" Component={Post} />
             <Route path="admin/update" Component={Update} />
           </Route>
+          <Route path="*" Component={NotFound}/>
+          <Route path="movie-form/:id" Component={MovieForm}/>
         </Routes>
       </div>
     </React.Fragment>
